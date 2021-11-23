@@ -16,14 +16,27 @@ public class FormChat extends javax.swing.JFrame {
      */
     public FormChat() {
         initComponents();
+        setImage();
+        setLocationRelativeTo(null);
+        
+        
+    }
+    
+    private void setImage(){
         jLabel1.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\user (1).png"));
         btnAddGroup.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\add-group.png"));
         btnAddFriend.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\add-user.png"));
         btnSetting.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\setting.png"));
         jLabel4.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\user (2).png"));
         btnSend.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\send.png"));
+        btnDeleteFriend.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\remove-user.png"));
         btnFile.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\folder.png"));
-        
+        btnIcon1.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon1.png"));
+        btnIcon2.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon2.png"));
+        btnIcon3.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon3.png"));
+        btnIcon4.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon4.png"));
+        btnIcon5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon5.png"));
+        btnIcon6.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon6.png"));
     }
 
     /**
@@ -53,12 +66,12 @@ public class FormChat extends javax.swing.JFrame {
         btnSend = new javax.swing.JButton();
         btnFile = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnIcon1 = new javax.swing.JButton();
+        btnIcon2 = new javax.swing.JButton();
+        btnIcon3 = new javax.swing.JButton();
+        btnIcon4 = new javax.swing.JButton();
+        btnIcon5 = new javax.swing.JButton();
+        btnIcon6 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnDeleteFriend = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -70,7 +83,7 @@ public class FormChat extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nguyễn Tiến Dũng");
 
@@ -102,12 +115,10 @@ public class FormChat extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 43, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                                .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jRadioButtonOnline)
@@ -125,13 +136,12 @@ public class FormChat extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel3)))))
+                            .addComponent(jLabel3))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -141,7 +151,7 @@ public class FormChat extends javax.swing.JFrame {
                         .addComponent(btnAddGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jRadioButtonOnline, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -156,17 +166,17 @@ public class FormChat extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton9.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton10.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton11.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton12.setBackground(new java.awt.Color(255, 255, 255));
+        btnIcon6.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -174,27 +184,27 @@ public class FormChat extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnIcon1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnIcon2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnIcon3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnIcon4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnIcon5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(btnIcon6, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -323,14 +333,14 @@ public class FormChat extends javax.swing.JFrame {
     private javax.swing.JButton btnAddGroup;
     private javax.swing.JButton btnDeleteFriend;
     private javax.swing.JButton btnFile;
+    private javax.swing.JButton btnIcon1;
+    private javax.swing.JButton btnIcon2;
+    private javax.swing.JButton btnIcon3;
+    private javax.swing.JButton btnIcon4;
+    private javax.swing.JButton btnIcon5;
+    private javax.swing.JButton btnIcon6;
     private javax.swing.JButton btnSend;
     private javax.swing.JButton btnSetting;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
