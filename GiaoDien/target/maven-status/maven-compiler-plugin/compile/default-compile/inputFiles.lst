@@ -1,4 +1,10 @@
-C:\Users\TienDung\Documents\NetBeansProjects\GiaoDien\src\main\java\view\ViewChat.java
-C:\Users\TienDung\Documents\NetBeansProjects\GiaoDien\src\main\java\view\DangKi.java
-C:\Users\TienDung\Documents\NetBeansProjects\GiaoDien\src\main\java\view\DangNhap.java
-C:\Users\TienDung\Documents\NetBeansProjects\GiaoDien\src\main\java\view\SignINN.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\connection\MyConnection.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\server\ServerThread.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\view\DangNhap1.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\connection\TaiKhoanBUS.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\connection\TaiKhoanDAO.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\view\FormChat.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\entity\TaiKhoan.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\client\Client.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\view\DangKi.java
+C:\Users\TienDung\Documents\NetBeansProjects\ChatClientServer\GiaoDien\src\main\java\server\Server.java
