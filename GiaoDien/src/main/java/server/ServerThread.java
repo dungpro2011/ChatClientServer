@@ -5,6 +5,7 @@
  */
 package server;
 
+import connection.ListFriendBUS;
 import connection.TaiKhoanBUS;
 import entity.TaiKhoan;
 import java.io.IOException;
@@ -13,6 +14,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,12 +33,16 @@ public class ServerThread extends Thread {
     private ObjectOutputStream oos;
     private boolean run;
     private TaiKhoanBUS tkBUS;
+    //get list friend
+    private ListFriendBUS lfBUS;
+    private ArrayList<String> listFriend;
 
     public ServerThread(Server server, Socket client) {
         try {
             this.server = server;
             this.clienSocket = client;
             tkBUS = new TaiKhoanBUS();
+            lfBUS = new ListFriendBUS();
             oos = new ObjectOutputStream(client.getOutputStream());
             ois = new ObjectInputStream(client.getInputStream());
             run = true;
@@ -66,7 +73,10 @@ public class ServerThread extends Thread {
                         server.listUser.put(t.getUserName(), this);
                         send("dangnhap");
                         while (run) {
-                            String res = (String) receive();
+                            String req = (String) receive();
+                            StringTokenizer str = new StringTokenizer(req,"#");//tach cu phap tu client
+                            String res = str.nextToken();
+                            listFriend = lfBUS.getListFriend(t.getUserName()); // return list friend cua user
                             switch (res) {
                                 case "exit": // exit
                                     run = false;
@@ -78,6 +88,55 @@ public class ServerThread extends Thread {
                                     send(t.getUserName());
                                     break;
                                 case "chat"://gửi tin nhắn
+                                    break;
+
+                                //thinh
+                                case "searchuser":
+                                    String data = "";
+                                    while (str.hasMoreTokens()){
+                                        data = str.nextToken();
+                                    }
+                                    TaiKhoan result = new TaiKhoan();
+                                    ArrayList<TaiKhoan> userArr = tkBUS.docDanhSachTaiKhoan();
+                                    for (TaiKhoan user : userArr){
+                                        if (user.getUserName().equals(data)){
+                                            result = user;
+                                            break;
+                                        }
+                                    }
+                                    server.showMessage("search-users");
+                                    server.showMessage(result.getUserName());
+                                    send(result);
+                                    break;
+                                case "isInContact":
+                                    String userNameFriend = "";
+                                    while (str.hasMoreTokens()){
+                                        userNameFriend = str.nextToken();
+                                    }
+                                    boolean isFriendInContact = listFriend.contains(userNameFriend);
+                                    server.showMessage("checkFriend");
+                                    if (isFriendInContact) send("yes");
+                                    else send("no");
+                                    break;
+                                case "addFriend":
+                                    String addFriendUserName = "";
+                                    while (str.hasMoreTokens()){
+                                        addFriendUserName = str.nextToken();
+                                    }
+                                    boolean isAdded = lfBUS.insertFriend(t.getUserName(),addFriendUserName);
+                                    server.showMessage("addFriend");
+                                    if (isAdded) send("added");
+                                    else send("notadded");
+                                    break;
+                                case "delFriend":
+                                    String delFriendUserName = "";
+                                    while (str.hasMoreTokens()){
+                                        delFriendUserName = str.nextToken();
+                                    }
+                                    boolean isDeleted = lfBUS.deleteFriend(t.getUserName(),delFriendUserName);
+                                    server.showMessage("delFriend");
+                                    if (isDeleted) send("deleted");
+                                    else send("notdelete");
                                     break;
                             }
                         }
@@ -124,7 +183,7 @@ public class ServerThread extends Thread {
         }
     }
 
-    private void send(String s) {
+    private void send(Object s) {
         try {
             oos.writeObject(s);
         } catch (Exception e) {

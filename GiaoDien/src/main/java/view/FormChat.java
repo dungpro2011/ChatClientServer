@@ -6,9 +6,13 @@
 package view;
 
 import client.Client;
+import entity.TaiKhoan;
+
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import javax.swing.*;
 
 /**
  *
@@ -20,7 +24,8 @@ public class FormChat extends javax.swing.JFrame {
 
     //private static final long serialVersionUID = 1L;
     public Client cl;
-
+    //Thinh
+    public String clientName;
     /**
      * Creates new form FormChat
      */
@@ -30,9 +35,11 @@ public class FormChat extends javax.swing.JFrame {
         this.cl = cl;
         setImage();
         cl.sendString("viewchat");
-        jLabelName.setText(cl.getResult());
+        clientName = cl.getResult();
+        jLabelName.setText(clientName);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setSize(new Dimension(800,650));
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 cl.exit();
@@ -42,20 +49,20 @@ public class FormChat extends javax.swing.JFrame {
     }
 
     private void setImage() {
-        jLabel1.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\user (1).png"));
-        btnAddGroup.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\add-group.png"));
-        btnAddFriend.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\add-user.png"));
-        btnSetting.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\setting.png"));
-        jLabel4.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\user (2).png"));
-        btnSend.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\send.png"));
-        btnDeleteFriend.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\remove-user.png"));
-        btnFile.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\folder.png"));
-        btnIcon1.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon1.png"));
-        btnIcon2.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon2.png"));
-        btnIcon3.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon3.png"));
-        btnIcon4.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon4.png"));
-        btnIcon5.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon5.png"));
-        btnIcon6.setIcon(new javax.swing.ImageIcon("src\\main\\java\\images\\icon6.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/user (1).png"));
+        btnAddGroup.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/add-group.png"));
+        btnAddFriend.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/add-user.png"));
+        btnSetting.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/setting.png"));
+        jLabel4.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/user (2).png"));
+        btnSend.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/send.png"));
+        btnDeleteFriend.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/remove-user.png"));
+        btnFile.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/folder.png"));
+        btnIcon1.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon1.png"));
+        btnIcon2.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon2.png"));
+        btnIcon3.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon3.png"));
+        btnIcon4.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon4.png"));
+        btnIcon5.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon5.png"));
+        btnIcon6.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon6.png"));
     }
 
     /**
@@ -293,7 +300,13 @@ public class FormChat extends javax.swing.JFrame {
                     .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
+        //thinh
+        btnAddFriend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddFriendActionPerformed(evt);
+            }
+        });
+        //
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,7 +324,25 @@ public class FormChat extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    //thinh
+    private void btnAddFriendActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        try {
 
+            /*cl.sendString("loaduser");
+            ArrayList<TaiKhoan> userArr = (ArrayList<TaiKhoan>) cl.getUserList();
+            userArr.remove(cl);
+            for (TaiKhoan user : userArr){
+                System.out.println(user.getUserName());
+            }*/
+            ThemBan viewThemBan = new ThemBan(cl,clientName);
+            viewThemBan.setVisible(true);
+            //JOptionPane.showMessageDialog(rootPane, "Hiii.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -346,6 +377,8 @@ public class FormChat extends javax.swing.JFrame {
 ////            }
 ////        });
 //    }
+    //thinh
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddFriend;

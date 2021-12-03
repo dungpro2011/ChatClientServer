@@ -86,7 +86,17 @@ public class TaiKhoan implements Serializable{
             return false;
         }
     }
-    
+
+    @Override
+    public String toString() {
+        return "TaiKhoan{" +
+                "userName='" + userName + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                ", ngaySinh='" + ngaySinh + '\'' +
+                '}';
+    }
+
     public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }

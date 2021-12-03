@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import view.DangNhap1;
 
@@ -93,6 +94,17 @@ public class Client {
         try {
             String res = (String) ois.readObject();
             return res;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    //thinh
+    public TaiKhoan getUser() {
+        try {
+            TaiKhoan user = (TaiKhoan) ois.readObject();
+            return user;
 
         } catch (Exception e) {
             e.printStackTrace();
