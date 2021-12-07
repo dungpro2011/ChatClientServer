@@ -138,6 +138,11 @@ public class ServerThread extends Thread {
                                     if (isDeleted) send("deleted");
                                     else send("notdelete");
                                     break;
+                                case "loadListFriend":
+                                    ArrayList<String> list = lfBUS.getListFriend(t.getUserName());
+                                    server.showMessage("loadFriends");
+                                    send(list);
+                                    break;
                             }
                         }
                     } else {

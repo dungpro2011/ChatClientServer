@@ -13,7 +13,7 @@ public class ListFriendBUS {
         lfDAO = new ListFriendDAO();
     }
 
-    //Lay danh sach nhan vien tu DAO
+    //Lay danh sach ban be tu DAO
     public ArrayList<String> getListFriend(String user) {
         return lfDAO.getListFriend(user);
     }

@@ -22,7 +22,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22804969-844e-475a-991e-0a36b944ea2f" name="Default Changelist" comment="Done Add Friend" />
+    <list default="true" id="22804969-844e-475a-991e-0a36b944ea2f" name="Default Changelist" comment="Done Add Friend">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/src/main/java/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/src/main/java/connection/ListFriendBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/src/main/java/connection/ListFriendBUS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/src/main/java/server/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/src/main/java/server/ServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/src/main/java/view/FormChat.java" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/src/main/java/view/FormChat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/target/classes/client/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/target/classes/client/Client.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/target/classes/server/ServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/target/classes/server/ServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/target/classes/view/FormChat$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/target/classes/view/FormChat$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/target/classes/view/FormChat$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/target/classes/view/FormChat$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GiaoDien/target/classes/view/FormChat.class" beforeDir="false" afterPath="$PROJECT_DIR$/GiaoDien/target/classes/view/FormChat.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -159,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638625170026</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Done Add Friend">
+      <created>1638625367902</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1638625367902</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

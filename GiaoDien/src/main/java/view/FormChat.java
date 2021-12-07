@@ -34,6 +34,7 @@ public class FormChat extends javax.swing.JFrame {
         initComponents();
         this.cl = cl;
         setImage();
+        loadListFriend();
         cl.sendString("viewchat");
         clientName = cl.getResult();
         jLabelName.setText(clientName);
@@ -328,16 +329,22 @@ public class FormChat extends javax.swing.JFrame {
     private void btnAddFriendActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         try {
-
-            /*cl.sendString("loaduser");
-            ArrayList<TaiKhoan> userArr = (ArrayList<TaiKhoan>) cl.getUserList();
-            userArr.remove(cl);
-            for (TaiKhoan user : userArr){
-                System.out.println(user.getUserName());
-            }*/
             ThemBan viewThemBan = new ThemBan(cl,clientName);
             viewThemBan.setVisible(true);
             //JOptionPane.showMessageDialog(rootPane, "Hiii.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void loadListFriend(){
+        try {
+            cl.sendString("loadListFriend");
+            ArrayList<String> friendArr = cl.getFriends();
+            for (String friend : friendArr){
+                System.out.println(friend);
+
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

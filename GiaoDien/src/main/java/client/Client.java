@@ -111,6 +111,17 @@ public class Client {
         }
         return null;
     }
+    public ArrayList<String> getFriends(){
+        try {
+            ArrayList<String> listfriend = (ArrayList<String>) ois.readObject();
+
+            return listfriend;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     //thoat khỏi Frame + đóng socket
     public void exit() {
