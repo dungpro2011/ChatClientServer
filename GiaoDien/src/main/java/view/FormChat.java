@@ -50,20 +50,20 @@ public class FormChat extends javax.swing.JFrame {
     }
 
     private void setImage() {
-        jLabel1.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/user (1).png"));
-        btnAddGroup.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/add-group.png"));
-        btnAddFriend.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/add-user.png"));
-        btnSetting.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/setting.png"));
-        jLabel4.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/user (2).png"));
-        btnSend.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/send.png"));
-        btnDeleteFriend.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/remove-user.png"));
-        btnFile.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/folder.png"));
-        btnIcon1.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon1.png"));
-        btnIcon2.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon2.png"));
-        btnIcon3.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon3.png"));
-        btnIcon4.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon4.png"));
-        btnIcon5.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon5.png"));
-        btnIcon6.setIcon(new javax.swing.ImageIcon("./GiaoDien/src/main/java/images/icon6.png"));
+        jLabel1.setIcon(new javax.swing.ImageIcon("src/main/java/images/user (1).png"));
+        btnAddGroup.setIcon(new javax.swing.ImageIcon("src/main/java/images/add-group.png"));
+        btnAddFriend.setIcon(new javax.swing.ImageIcon("src/main/java/images/add-user.png"));
+        btnSetting.setIcon(new javax.swing.ImageIcon("src/main/java/images/setting.png"));
+        jLabel4.setIcon(new javax.swing.ImageIcon("src/main/java/images/user (2).png"));
+        btnSend.setIcon(new javax.swing.ImageIcon("src/main/java/images/send.png"));
+        btnDeleteFriend.setIcon(new javax.swing.ImageIcon("src/main/java/images/remove-user.png"));
+        btnFile.setIcon(new javax.swing.ImageIcon("src/main/java/images/folder.png"));
+        btnIcon1.setIcon(new javax.swing.ImageIcon("src/main/java/images/icon1.png"));
+        btnIcon2.setIcon(new javax.swing.ImageIcon("src/main/java/images/icon2.png"));
+        btnIcon3.setIcon(new javax.swing.ImageIcon("src/main/java/images/icon3.png"));
+        btnIcon4.setIcon(new javax.swing.ImageIcon("src/main/java/images/icon4.png"));
+        btnIcon5.setIcon(new javax.swing.ImageIcon("src/main/java/images/icon5.png"));
+        btnIcon6.setIcon(new javax.swing.ImageIcon("src/main/java/images/icon6.png"));
     }
 
     /**
