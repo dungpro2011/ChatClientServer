@@ -24,9 +24,10 @@ public class DangKi extends javax.swing.JFrame {
     /**
      * Creates new form DangKi
      */
-    public DangKi() {
+    public DangKi(Client cl) {
         
         initComponents();
+        this.cl= cl;
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {

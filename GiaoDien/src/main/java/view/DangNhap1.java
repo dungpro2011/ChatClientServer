@@ -197,6 +197,9 @@ public class DangNhap1 extends javax.swing.JFrame {
 
     private void btnDKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDKActionPerformed
         // TODO add your handling code here:
+        DangKi dk = new DangKi(this.cl);
+        dk.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnDKActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
