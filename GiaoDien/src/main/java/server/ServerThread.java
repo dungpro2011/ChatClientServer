@@ -16,9 +16,7 @@ import java.net.Socket;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -61,131 +59,131 @@ public class ServerThread extends Thread {
     public void run() {
         while (run) {
             try {
-                Object o = receive();
-                if (o instanceof TaiKhoan) {
-                    t = (TaiKhoan) o;
-                    if (server.listUser.containsKey(t.getUserName())) {
-                        send("not");
-                    }
+                String req = (String) receive();
+                StringTokenizer str = new StringTokenizer(req, "#");//tach cu phap tu client
+                listFriend = lfBUS.getListFriend(t.getUserName()); // return list friend cua user
+                String res = str.nextToken();
+                switch (res) {
+                    case "exit1":
+                        run = false;
+                        server.listUser.remove(t.getUserName());
+                        server.showMessage(t.getUserName() + " da thoat!");
+                        exit();
+                        break;
+                    case "exit2":
+                        run = false;
+                        exit();
+                        break;
+                    case "login":
+                        Object o = (Object) receive();
+                        t = (TaiKhoan) o;
+                        if (server.listUser.containsKey(t.getUserName())) {
+                            send("not");
+                        }
 
-                    if (checkDN(t)) {
-                        server.showMessage(t.getUserName() + " da ket noi");
-                        server.listUser.put(t.getUserName(), this);
-                        send("dangnhap");
-                        while (run) {
-                            String req = (String) receive();
-                            StringTokenizer str = new StringTokenizer(req,"#");//tach cu phap tu client
-                            String res = str.nextToken();
-                            listFriend = lfBUS.getListFriend(t.getUserName()); // return list friend cua user
-                            switch (res) {
-                                case "exit": // exit
-                                    run = false;
-                                    server.listUser.remove(t.getUserName());
-                                    server.showMessage(t.getUserName() + " da thoat!");
-                                    exit();
-                                    break;
-                                case "viewchat": //load view chat
-                                    send(t.getUserName());
-                                    break;
-                                case "chat"://gửi tin nhắn
-                                    break;
+                        if (checkDN(t)) {
+                            server.showMessage(t.getUserName() + " da ket noi");
+                            server.listUser.put(t.getUserName(), this);
+                            send("yes");
+                        } else {
+                            send("no");
+                        }
+                        break;
+                    case "registration":
+                        Object obj = receive();
+                        t = (TaiKhoan) obj;
+                        if (checkDK(t)) {
+                            send("yes");
+                            server.showMessage(t.getUserName() + " da ket noi");
+                            server.listUser.put(t.getUserName(), this);
+                        } else {
+                            send("no");
+                        }
+                        break;
+                    case "viewchat": //load view chat
+                        send(getName(t.getUserName()));
+                        break;
+                    case "chat"://gửi tin nhắn
+                        break;
 
-                                //thinh
-                                case "searchuser":
-                                    String data = "";
-                                    while (str.hasMoreTokens()){
-                                        data = str.nextToken();
-                                    }
-                                    TaiKhoan result = new TaiKhoan();
-                                    ArrayList<TaiKhoan> userArr = tkBUS.docDanhSachTaiKhoan();
-                                    for (TaiKhoan user : userArr){
-                                        if (user.getUserName().equals(data)){
-                                            result = user;
-                                            break;
-                                        }
-                                    }
-                                    server.showMessage("search-users");
-                                    server.showMessage(result.getUserName());
-                                    send(result);
-                                    break;
-                                case "isInContact":
-                                    String userNameFriend = "";
-                                    while (str.hasMoreTokens()){
-                                        userNameFriend = str.nextToken();
-                                    }
-                                    boolean isFriendInContact = listFriend.contains(userNameFriend);
-                                    server.showMessage("checkFriend");
-                                    if (isFriendInContact) send("yes");
-                                    else send("no");
-                                    break;
-                                case "addFriend":
-                                    String addFriendUserName = "";
-                                    while (str.hasMoreTokens()){
-                                        addFriendUserName = str.nextToken();
-                                    }
-                                    boolean isAdded = lfBUS.insertFriend(t.getUserName(),addFriendUserName);
-                                    server.showMessage("addFriend");
-                                    if (isAdded) send("added");
-                                    else send("notadded");
-                                    break;
-                                case "delFriend":
-                                    String delFriendUserName = "";
-                                    while (str.hasMoreTokens()){
-                                        delFriendUserName = str.nextToken();
-                                    }
-                                    boolean isDeleted = lfBUS.deleteFriend(t.getUserName(),delFriendUserName);
-                                    server.showMessage("delFriend");
-                                    if (isDeleted) send("deleted");
-                                    else send("notdelete");
-                                    break;
-                                case "loadListFriend":
-                                    ArrayList<String> list = lfBUS.getListFriend(t.getUserName());
-                                    server.showMessage("loadFriends");
-                                    send(list);
-                                    break;
+                        
+                    //thinh
+                    case "searchuser":
+                        String data = "";
+                        while (str.hasMoreTokens()) {
+                            data = str.nextToken();
+                        }
+                        TaiKhoan result = new TaiKhoan();
+                        ArrayList<TaiKhoan> userArr = tkBUS.docDanhSachTaiKhoan();
+                        for (TaiKhoan user : userArr) {
+                            if (user.getUserName().equals(data)) {
+                                result = user;
+                                break;
                             }
                         }
-                    } else {
-                        send("thatbai");
-                    }
-                } else {
-                    String res = (String) o;
-                    switch (res) {
-                        case "exit":
-                            run = false;
-                            exit();
-                            break;
-                        case "dangki":
-                            TaiKhoan tk = (TaiKhoan) receive();
-                            if (checkDK(tk)) {
-                                send("dangnhap");
-                                server.showMessage(tk.getUserName() + " da ket noi");
-                                server.listUser.put(tk.getUserName(), this);
-                                while (run) {
-                                    String s = (String) receive();
-                                    switch (s) {
-                                        case "exit": // exit
-                                            run = false;
-                                            server.listUser.remove(tk.getUserName());
-                                            server.showMessage(tk.getUserName() + "da thoat!");
-                                            exit();
-                                            break;
-                                        case "viewchat": //load view chat
-
-                                            break;
-                                    }
-                                }
-                            }
-                            send("tontai");
-                            break;
-
-                    }
+                        server.showMessage("search-users");
+                        server.showMessage(result.getUserName());
+                        send(result);
+                        break;
+                    case "isInContact":
+                        String userNameFriend = "";
+                        while (str.hasMoreTokens()) {
+                            userNameFriend = str.nextToken();
+                        }
+                        boolean isFriendInContact = listFriend.contains(userNameFriend);
+                        server.showMessage("checkFriend");
+                        if (isFriendInContact) {
+                            send("yes");
+                        } else {
+                            send("no");
+                        }
+                        break;
+                    case "addFriend":
+                        String addFriendUserName = "";
+                        while (str.hasMoreTokens()) {
+                            addFriendUserName = str.nextToken();
+                        }
+                        boolean isAdded = lfBUS.insertFriend(t.getUserName(), addFriendUserName);
+                        server.showMessage("addFriend");
+                        if (isAdded) {
+                            send("added");
+                        } else {
+                            send("notadded");
+                        }
+                        break;
+                    case "delFriend":
+                        String delFriendUserName = "";
+                        while (str.hasMoreTokens()) {
+                            delFriendUserName = str.nextToken();
+                        }
+                        boolean isDeleted = lfBUS.deleteFriend(t.getUserName(), delFriendUserName);
+                        server.showMessage("delFriend");
+                        if (isDeleted) {
+                            send("deleted");
+                        } else {
+                            send("notdelete");
+                        }
+                        break;
+                    case "loadListFriend":
+                        ArrayList<String> list = lfBUS.getListFriend(t.getUserName());
+                        server.showMessage("loadFriends");
+                        send(list);
+                        break;
                 }
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+    
+    public String getName(String t){
+        String str = "";
+        for(TaiKhoan tk : tkBUS.docDanhSachTaiKhoan()){
+            if(tk.getUserName().equals(t))
+                str= tk.getHoTen();
+        }
+        return str;
     }
 
     private void send(Object s) {

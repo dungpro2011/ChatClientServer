@@ -124,9 +124,22 @@ public class Client {
     }
 
     //thoat khỏi Frame + đóng socket
-    public void exit() {
+    public void exit1() {
         try {
-            sendString("exit");
+            sendString("exit1#");
+            ois.close();
+            oos.close();
+            socket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.exit(0);
+
+    }
+    
+    public void exit2() {
+        try {
+            sendString("exit2#");
             ois.close();
             oos.close();
             socket.close();

@@ -1,6 +1,7 @@
 package view;
 
 import client.Client;
+import client.MD5;
 import entity.TaiKhoan;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -12,7 +13,6 @@ import javax.swing.JOptionPane;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author TienDung
@@ -21,6 +21,7 @@ public class DangNhap1 extends javax.swing.JFrame {
 
     //private static final long serialVersionUID = 1L;
     public Client cl = new Client(this);
+
     /**
      * Creates new form DangNhap1
      */
@@ -33,10 +34,10 @@ public class DangNhap1 extends javax.swing.JFrame {
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 //JOptionPane.showMessageDialog(rootPane, "Đã thoát");
-                cl.exit();
+                cl.exit2();
             }
         });
-        
+
     }
 
     /**
@@ -200,12 +201,12 @@ public class DangNhap1 extends javax.swing.JFrame {
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
-   
+
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
         // TODO add your handling code here:
-       if (jCheckBox1.isSelected()) {
+        if (jCheckBox1.isSelected()) {
             txtMK.setEchoChar((char) 0);
         } else {
             txtMK.setEchoChar('*');
@@ -215,22 +216,25 @@ public class DangNhap1 extends javax.swing.JFrame {
     private void btnDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDNActionPerformed
         // TODO add your handling code here:
         try {
+            cl.sendString("login#");
             TaiKhoan tk = new TaiKhoan();
             if (txtTK.getText().length() != 0 || txtMK.getText().length() != 0) {
                 tk.setUserName(txtTK.getText());
-                tk.setPassWord(txtMK.getText());
+                MD5 md5 = new MD5();
+                tk.setPassWord(md5.getMD5(txtMK.getText()));
                 cl.sendTaiKhoan(tk);
                 String res = cl.getResult();
                 if (res.equals("not")) {
                     JOptionPane.showMessageDialog(rootPane, "Tài khoản đã tồn tại.");
                 } else {
-                    if (res.equals("dangnhap")) {
+                    if (res.equals("yes")) {
                         JOptionPane.showMessageDialog(rootPane, "Đăng nhập thành công.");
                         FormChat fc = new FormChat(this.cl);
                         fc.setVisible(true);
                         dispose();
-                    }else
+                    } else {
                         JOptionPane.showMessageDialog(rootPane, "Sai thông tin tài khoản.");
+                    }
                 }
 
             } else {
@@ -244,7 +248,7 @@ public class DangNhap1 extends javax.swing.JFrame {
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         // TODO add your handling code here:
-        cl.exit();
+        cl.exit2();
     }//GEN-LAST:event_btnExitActionPerformed
 
     /**

@@ -35,7 +35,7 @@ public class FormChat extends javax.swing.JFrame {
         this.cl = cl;
         setImage();
         loadListFriend();
-        cl.sendString("viewchat");
+        cl.sendString("viewchat#");
         clientName = cl.getResult();
         jLabelName.setText(clientName);
         setLocationRelativeTo(null);
@@ -43,7 +43,7 @@ public class FormChat extends javax.swing.JFrame {
         setSize(new Dimension(800,650));
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                cl.exit();
+                cl.exit1();
             }
         });
 

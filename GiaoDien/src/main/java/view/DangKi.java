@@ -6,9 +6,12 @@
 package view;
 
 import client.Client;
+import client.MD5;
+import entity.TaiKhoan;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,7 +31,7 @@ public class DangKi extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                cl.exit();
+                cl.exit2();
             }
         });
     }
@@ -50,8 +53,8 @@ public class DangKi extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButtonNam = new javax.swing.JRadioButton();
+        jRadioButtonNu = new javax.swing.JRadioButton();
         txtEmail = new javax.swing.JTextField();
         txtMK = new javax.swing.JPasswordField();
         jcheckShow = new javax.swing.JCheckBox();
@@ -65,6 +68,11 @@ public class DangKi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnDangKi.setText("Đăng kí");
+        btnDangKi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangKiActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -80,10 +88,10 @@ public class DangKi extends javax.swing.JFrame {
 
         jLabel6.setText("Giới tính");
 
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Nam");
+        jRadioButtonNam.setSelected(true);
+        jRadioButtonNam.setText("Nam");
 
-        jRadioButton2.setText("Nữ");
+        jRadioButtonNu.setText("Nữ");
 
         jcheckShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,9 +136,9 @@ public class DangKi extends javax.swing.JFrame {
                             .addGap(33, 33, 33)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jRadioButton1)
+                                    .addComponent(jRadioButtonNam)
                                     .addGap(26, 26, 26)
-                                    .addComponent(jRadioButton2))
+                                    .addComponent(jRadioButtonNu))
                                 .addComponent(txtEmail)
                                 .addComponent(txtMK)
                                 .addComponent(txtHoTen)
@@ -173,8 +181,8 @@ public class DangKi extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(jRadioButtonNam)
+                    .addComponent(jRadioButtonNu))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -211,6 +219,42 @@ public class DangKi extends javax.swing.JFrame {
         dn.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void btnDangKiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKiActionPerformed
+        // TODO add your handling code here:
+        cl.sendString("registration#");
+        if (txtEmail.getText().length() != 0 && txtHoTen.getText().length() != 0
+                && txtMK.getText().length() != 0 && txtNgaySinh.getText().length() != 0
+                && (jRadioButtonNam.isSelected() || jRadioButtonNu.isSelected())) {
+            TaiKhoan tk = new TaiKhoan();
+            tk.setUserName(txtEmail.getText());
+            MD5 md5 = new MD5();
+            tk.setPassWord(md5.getMD5(txtMK.getText()));
+            tk.setHoTen(txtHoTen.getText());
+            if (tk.setNgaySinhKT(txtNgaySinh.getText()) == false) {
+                return;
+            }
+            if (jRadioButtonNam.isSelected()) {
+                tk.setGioiTinh("nam");
+            } else {
+                tk.setGioiTinh("nữ");
+            }
+            cl.sendTaiKhoan(tk);
+            String res = cl.getResult();
+            if (res.equals("yes")) {
+                JOptionPane.showMessageDialog(rootPane, "Đăng ký thành công.");
+                FormChat fc = new FormChat(this.cl);
+                
+                fc.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Tài khoản email này đã tồn tại!!!");
+            }
+
+        } else
+            JOptionPane.showMessageDialog(null, "Nhập đầy đủ thông tin !!!");
+    
+    }//GEN-LAST:event_btnDangKiActionPerformed
 
     
     
@@ -265,8 +309,8 @@ public class DangKi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButtonNam;
+    private javax.swing.JRadioButton jRadioButtonNu;
     private javax.swing.JCheckBox jcheckShow;
     private javax.swing.JTextField txtCheckMail;
     private javax.swing.JTextField txtEmail;
