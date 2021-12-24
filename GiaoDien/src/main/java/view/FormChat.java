@@ -80,11 +80,11 @@ public class FormChat extends javax.swing.JFrame {
         jLabelName = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jRadioButtonOnline = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         btnAddGroup = new javax.swing.JButton();
         btnAddFriend = new javax.swing.JButton();
         btnSetting = new javax.swing.JButton();
+        Reset = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -117,16 +117,23 @@ public class FormChat extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 255, 51));
         jLabel3.setText("Online");
 
-        jRadioButtonOnline.setBackground(new java.awt.Color(255, 204, 0));
-        jRadioButtonOnline.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jRadioButtonOnline.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonOnline.setText("online");
-
         btnAddGroup.setBackground(new java.awt.Color(255, 255, 255));
 
         btnAddFriend.setBackground(new java.awt.Color(255, 255, 255));
+        btnAddFriend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddFriendActionPerformed(evt);
+            }
+        });
 
         btnSetting.setBackground(new java.awt.Color(255, 255, 255));
+
+        Reset.setText("Reset");
+        Reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,8 +154,7 @@ public class FormChat extends javax.swing.JFrame {
                                 .addComponent(btnSetting, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jRadioButtonOnline)
+                        .addComponent(Reset, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddFriend, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -173,12 +179,15 @@ public class FormChat extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnAddFriend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAddGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jRadioButtonOnline, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnAddFriend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddGroup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(Reset)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -301,13 +310,7 @@ public class FormChat extends javax.swing.JFrame {
                     .addComponent(btnSend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        //thinh
-        btnAddFriend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddFriendActionPerformed(evt);
-            }
-        });
-        //
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -325,8 +328,8 @@ public class FormChat extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //thinh
-    private void btnAddFriendActionPerformed(java.awt.event.ActionEvent evt) {
+
+    private void btnAddFriendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddFriendActionPerformed
         // TODO add your handling code here:
         try {
             ThemBan viewThemBan = new ThemBan(cl,clientName);
@@ -336,15 +339,32 @@ public class FormChat extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }//GEN-LAST:event_btnAddFriendActionPerformed
+
+    private void ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetActionPerformed
+        // TODO add your handling code here:
+        loadListFriend();
+    }//GEN-LAST:event_ResetActionPerformed
+    //thinh
+    
     private void loadListFriend(){
         try {
-            cl.sendString("loadListFriend");
+           Container con = new Container();
+            cl.sendString("loadListFriend#");
             ArrayList<String> friendArr = cl.getFriends();
-            for (String friend : friendArr){
+            for (String friend : friendArr) {
                 System.out.println(friend);
-
+                JPanel p = new LoadFriend(this.cl, friend);
+                p.setSize(257, 55);
+                p.setVisible(true);
+                con.add(p);
             }
+            con.setLayout(new BoxLayout(con, BoxLayout.Y_AXIS));
+            jScrollPane1.getViewport().setView(con);
+            jScrollPane1.getViewport().setBackground(Color.white);
+            con.setBackground(Color.WHITE);
+
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -388,6 +408,7 @@ public class FormChat extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Reset;
     private javax.swing.JButton btnAddFriend;
     private javax.swing.JButton btnAddGroup;
     private javax.swing.JButton btnDeleteFriend;
@@ -409,7 +430,6 @@ public class FormChat extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButtonOnline;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
